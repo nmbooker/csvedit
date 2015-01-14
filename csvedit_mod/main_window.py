@@ -1,18 +1,14 @@
-
+#!/usr/bin/env python3
 """Main window for CSV Editor.
 """
 
 import sys
-from PySide.QtGui import QMainWindow, QApplication
+from PySide.QtGui import QStyle
+from .ui.mainwindow import Ui_MainWindow
 
 
-class MainWindow(QMainWindow):
-    def __init__(self, parent=None):
-        super(MainWindow, self).__init__(parent)
+class Ui_MainWindow(Ui_MainWindow):
+    def setupUi(self, mainwin):
+        super(Ui_MainWindow, self).setupUi(mainwin)
 
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    mainwin = MainWindow()
-    mainwin.show()
-
-    app.exec_()
+        self.action_New.setIcon(mainwin.style().standardIcon(
