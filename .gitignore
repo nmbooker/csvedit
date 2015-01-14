@@ -1,0 +1,6 @@
+*~
+.*.swp
+*.pyc
+*.pyo
+# The .py files in csvedit_mod/ui are generated (exception is __init__.py)
+/csvedit_mod/ui/*.py
