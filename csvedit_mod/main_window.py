@@ -5,6 +5,7 @@
 import sys
 from PySide.QtGui import QMainWindow, QStyle
 from .ui.mainwindow import Ui_MainWindow
+from .csv_table_model import CSVTableModel
 
 
 class MainWindow(QMainWindow, Ui_MainWindow):
@@ -12,7 +13,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         super(MainWindow, self).__init__(parent)
         self.setupUi(self)
 
+        self.model = CSVTableModel()
+
         self.action_Open.triggered.connect(self.openfile)
+
+        self.tableView.setModel(self.model)
     
     def openfile(self, checked=False):
         print("Open file")
