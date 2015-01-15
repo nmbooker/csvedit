@@ -6,14 +6,12 @@
 import sys
 
 from PySide.QtGui import QApplication, QMainWindow
-from csvedit_mod.ui.mainwindow import Ui_MainWindow
+from csvedit_mod.main_window import MainWindow
 
 def main():
     """Main program."""
     app = QApplication(sys.argv)
-    ui = Ui_MainWindow()
-    mainwin = QMainWindow()
-    ui.setupUi(mainwin)
+    mainwin = MainWindow()
     mainwin.show()
 
     sys.exit(app.exec_())

@@ -3,12 +3,16 @@
 """
 
 import sys
-from PySide.QtGui import QStyle
+from PySide.QtGui import QMainWindow, QStyle
 from .ui.mainwindow import Ui_MainWindow
 
 
-class Ui_MainWindow(Ui_MainWindow):
-    def setupUi(self, mainwin):
-        super(Ui_MainWindow, self).setupUi(mainwin)
+class MainWindow(QMainWindow, Ui_MainWindow):
+    def __init__(self, parent=None):
+        super(MainWindow, self).__init__(parent)
+        self.setupUi(self)
 
-        self.action_New.setIcon(mainwin.style().standardIcon(
+        self.action_Open.triggered.connect(self.openfile)
+    
+    def openfile(self, checked=False):
+        print("Open file")
