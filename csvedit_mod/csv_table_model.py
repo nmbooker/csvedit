@@ -38,6 +38,7 @@ class CSVTableModel(QAbstractTableModel):
 
 
     def savefile(self, filename, overwrite=False):
+        """Save file with given filename."""
         if (not overwrite) and os.path.exists(filename):
             raise FileExistsError(filename)
         mode = 'w' if overwrite else 'x'
