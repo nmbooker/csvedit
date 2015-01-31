@@ -13,15 +13,23 @@ class CSVTableModel(QAbstractTableModel):
         self._data = []
 
     def data(self, index, role=Qt.DisplayRole):
+        """Return the data at the given index.
+        """
         return self._data[index.row()][index.column()]
 
     def rowCount(self, parent):
+        """Return current number of rows.
+        """
         return len(self._data)
 
     def columnCount(self, parent):
+        """Return current number of columns.
+        """
         return len(self._data[0]) if self._data else 0
 
     def openfile(self, filename):
+        """Open file with given filename.
+        """
         with open(filename, 'r') as infile:
             csvdata = csv.reader(infile)
             self.modelAboutToBeReset.emit()
