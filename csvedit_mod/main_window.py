@@ -17,6 +17,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.model = CSVTableModel()
 
         self.action_Open.triggered.connect(self.openfile)
+        self.actionSave_As.triggered.connect(self.savefile)
 
         self.tableView.setModel(self.model)
     
@@ -24,3 +25,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         filename, _ = QFileDialog.getOpenFileName(self, "Open file", "Files (*.*)")
         if filename:
             self.model.openfile(filename)
+            self._filename = filename
+
+    def savefile(self, checked=False):
+        filename, _ = QFileDialog.getSaveFileName(self, "Save file", self._filename or '')
+        if filename:
+            self.model.savefile(filename)

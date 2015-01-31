@@ -4,6 +4,7 @@
 
 import sys
 import csv
+import os.path
 from PySide.QtCore import QAbstractTableModel, Qt
 
 class CSVTableModel(QAbstractTableModel):
@@ -26,3 +27,17 @@ class CSVTableModel(QAbstractTableModel):
             self.modelAboutToBeReset.emit()
             self._data = list(csvdata)
             self.modelReset.emit()
+
+
+    def savefile(self, filename, overwrite=False):
+        if (not overwrite) and os.path.exists(filename):
+            raise FileExistsError(filename)
+        mode = 'w' if overwrite else 'x'
+        with open(filename, mode) as outfile:
+            csvout = csv.writer(outfile)
+            csvout.writerows(self._data)
+
+
+class FileExistsError(StandardError):
+    """The given file already exists."""
+    pass
