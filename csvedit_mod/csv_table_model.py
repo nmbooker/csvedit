@@ -41,12 +41,12 @@ class CSVTableModel(QAbstractTableModel):
         """Save file with given filename."""
         if (not overwrite) and os.path.exists(filename):
             raise FileExistsError(filename)
-        mode = 'w' if overwrite else 'x'
-        with open(filename, mode) as outfile:
+
+        with open(filename, 'w') as outfile:
             csvout = csv.writer(outfile)
             csvout.writerows(self._data)
 
 
-class FileExistsError(StandardError):
+class FileExistsError(Exception):
     """The given file already exists."""
     pass
