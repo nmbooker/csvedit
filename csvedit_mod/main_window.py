@@ -3,7 +3,7 @@
 """
 
 import sys
-from PySide.QtGui import QMainWindow, QStyle
+from PySide.QtGui import QMainWindow, QStyle, QFileDialog
 from .ui.mainwindow import Ui_MainWindow
 from .csv_table_model import CSVTableModel
 
@@ -21,4 +21,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.tableView.setModel(self.model)
     
     def openfile(self, checked=False):
-        print("Open file")
+        filename, _ = QFileDialog.getOpenFileName(self, "Open file", "Files (*.*)")
+        if filename:
+            self.model.openfile(filename)
