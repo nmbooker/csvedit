@@ -3,9 +3,8 @@
 """
 
 import sys
+import csv
 from PySide.QtCore import QAbstractTableModel, Qt
-#from csvkit.unicsv import UnicodeCSVReader as CSVReader
-from csv import reader as CSVReader
 
 class CSVTableModel(QAbstractTableModel):
     def __init__(self, parent=None):
@@ -23,7 +22,7 @@ class CSVTableModel(QAbstractTableModel):
 
     def openfile(self, filename):
         with open(filename, 'r') as infile:
-            csv = CSVReader(infile)
+            csvdata = csv.reader(infile)
             self.modelAboutToBeReset.emit()
-            self._data = list(csv)
+            self._data = list(csvdata)
             self.modelReset.emit()
